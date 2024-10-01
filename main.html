@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="de">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -45,6 +45,19 @@
             font-size: 18px;
         }
 
+        .result-message {
+            font-size: 36px;
+            display: none; /* Initially hidden */
+        }
+
+        .result-message.correct {
+            color: green;
+        }
+
+        .result-message.incorrect {
+            color: red;
+        }
+
         .carry-bit {
             width: 40px;
             height: 40px;
@@ -70,29 +83,10 @@
             color: black; /* Ensure text is visible */
         }
 
-        /* Notification styles */
-        #notification {
-            position: fixed;
-            top: 20px;
-            right: 20px;
-            background-color: #4CAF50; /* Green background */
-            color: white; /* White text */
-            padding: 15px;
-            border-radius: 5px; /* Rounded corners */
-            display: none; /* Initially hidden */
-            z-index: 1000; /* Ensure it appears above other elements */
-            transition: opacity 0.5s; /* Smooth transition */
-        }
-
-        #notification.show {
-            display: block; /* Show the notification */
-            opacity: 1; /* Fully visible */
-        }
-
-        /* Counter styles */
-        #counter {
-            font-size: 24px;
+        .exercise-counter {
             margin-top: 20px;
+            font-size: 20px;
+            color: blue;
         }
     </style>
 </head>
@@ -102,12 +96,12 @@
     <div id="first-row" class="grid-container"></div>
     <div id="second-row" class="grid-container"></div>
     <div id="input-row" class="grid-container"></div>
-    <button onclick="checkAnswer()">Check Answer</button>
-    <button onclick="populateBinaryNumbers()">New Exercise</button> <!-- New exercise button -->
-    <div id="result"></div>
     
-    <div id="notification"></div> <!-- Notification for solved exercises -->
-    <div id="counter">Solved Exercises: 0</div> <!-- Counter for solved exercises -->
+    <button onclick="checkAnswer()">Überprüfen</button>
+    <button onclick="newExercise()">Neue Übung</button>
+
+    <div id="result" class="result-message"></div>
+    <div id="exercise-counter" class="exercise-counter">Gelöste Übungen: 0</div>
 
     <script src="game.js"></script>
 </body>

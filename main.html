@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bitwise Addition Game</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+        }
+
+        .grid-container {
+            display: grid;
+            grid-template-columns: repeat(9, 40px); /* 9 columns for 8 bits + carry */
+            grid-gap: 5px;
+            justify-content: center;
+            margin-bottom: 20px;
+        }
+
+        .grid-item {
+            font-size: 24px;
+            text-align: center;
+            line-height: 40px; /* Align text vertically */
+        }
+
+        input {
+            width: 40px;
+            height: 40px;
+            font-size: 24px;
+            text-align: center;
+        }
+
+        .correct {
+            background-color: lightgreen;
+        }
+
+        .incorrect {
+            background-color: lightcoral;
+        }
+
+        button {
+            margin-top: 20px;
+            padding: 10px 20px;
+            font-size: 18px;
+        }
+
+        .carry-bit {
+            width: 40px;
+            height: 40px;
+            border: 2px solid #007bff; /* Blue border for better visibility */
+            background-color: #e9ecef; /* Light gray background */
+            display: inline-block;
+            text-align: center;
+            line-height: 40px; /* Center text vertically */
+            cursor: pointer;
+            user-select: none; /* Prevent text selection on double-click */
+            transition: background-color 0.2s, transform 0.2s; /* Smooth transition */
+            border-radius: 5px; /* Rounded corners */
+        }
+
+        .carry-bit:hover {
+            background-color: #007bff; /* Change background color on hover */
+            color: white; /* Change text color to white */
+            transform: scale(1.1); /* Slightly enlarge on hover */
+        }
+
+        .carry-bit.active {
+            background-color: #ffcc80; /* Light orange background when active */
+            color: black; /* Ensure text is visible */
+        }
+
+        /* Notification styles */
+        #notification {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background-color: #4CAF50; /* Green background */
+            color: white; /* White text */
+            padding: 15px;
+            border-radius: 5px; /* Rounded corners */
+            display: none; /* Initially hidden */
+            z-index: 1000; /* Ensure it appears above other elements */
+            transition: opacity 0.5s; /* Smooth transition */
+        }
+
+        #notification.show {
+            display: block; /* Show the notification */
+            opacity: 1; /* Fully visible */
+        }
+
+        /* Counter styles */
+        #counter {
+            font-size: 24px;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Binary Addition Game</h1>
+    <div id="carry-toggle-row" class="grid-container"></div> <!-- Carry toggle row -->
+    <div id="first-row" class="grid-container"></div>
+    <div id="second-row" class="grid-container"></div>
+    <div id="input-row" class="grid-container"></div>
+    <button onclick="checkAnswer()">Check Answer</button>
+    <button onclick="populateBinaryNumbers()">New Exercise</button> <!-- New exercise button -->
+    <div id="result"></div>
+    
+    <div id="notification"></div> <!-- Notification for solved exercises -->
+    <div id="counter">Solved Exercises: 0</div> <!-- Counter for solved exercises -->
+
+    <script src="game.js"></script>
+</body>
+</html>

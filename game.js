@@ -1,4 +1,5 @@
 let exerciseCount = 0;
+let completeExcercise = false;
 
 // Generate random binary numbers of length 8
 function generateBinaryNumber(length) {
@@ -112,12 +113,16 @@ function toggleCarry(index) {
 
 // Increment the exercise counter and update display
 function incrementExerciseCounter() {
-    exerciseCount += 1;
+	if(!completeExcercise){
+		exerciseCount += 1;
+		completeExcercise = true;
+	}
     document.getElementById('exercise-counter').textContent = `Gelöste Übungen: ${exerciseCount}`;
 }
 
 // Start a new exercise
 function newExercise() {
+	completeExcercise = false;
     populateBinaryNumbers();
     document.getElementById('result').style.display = 'none'; // Hide the result when a new exercise starts
 }

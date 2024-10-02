@@ -8,13 +8,15 @@
         body {
             font-family: Arial, sans-serif;
             text-align: center;
+            margin: 0; /* Reset margin */
+            padding: 20px; /* Add padding to body */
         }
 
         .grid-container {
             display: grid;
             grid-template-columns: repeat(9, 40px); /* 9 columns for 8 bits + carry */
             grid-gap: 5px;
-            justify-content: center;
+            justify-content: center; /* Center the grid items */
             margin-bottom: 20px;
         }
 
@@ -88,14 +90,54 @@
             font-size: 20px;
             color: blue;
         }
+
+        .label {
+            font-size: 24px;
+            margin-right: 10px; /* Space between label and input */
+            align-self: center; /* Center the label vertically */
+            display: inline-block; /* Allow labels to be in line with inputs */
+        }
+        
+        .label-container {
+            display: flex;
+            justify-content: flex-start; /* Align to the left */
+            align-items: center; /* Center vertically */
+            margin-bottom: 10px; /* Space between rows */
+        }
+
+        .input-container {
+            display: flex;
+            flex-direction: column; /* Stack rows vertically */
+            align-items: center; /* Center the input rows */
+        }
+
+        /* Specific margin for Ergebnis and Übertrag containers */
+        .result-container {
+            margin-left: 16.7cm; /* Adjust this value to move left */
+        }
     </style>
 </head>
 <body>
     <h1>Binäre Addition - Spiel</h1>
-    <div id="first-row" class="grid-container"></div>
-    <div id="second-row" class="grid-container"></div>
-    <div id="carry-toggle-row" class="grid-container"></div> <!-- Carry toggle row -->
-    <div id="input-row" class="grid-container"></div>
+    
+    <div class="input-container">
+        <div class="label-container">
+            <div id="first-row" class="grid-container"></div>
+        </div>
+        <div class="label-container">
+            <div id="second-row" class="grid-container"></div>
+        </div>
+    </div>
+    
+    <div class="label-container result-container">
+        <span class="label">Übertrag:</span>
+        <div id="carry-toggle-row" class="grid-container"></div> <!-- Carry toggle row -->
+    </div>
+    
+    <div class="label-container result-container">
+        <span class="label">Ergebnis:</span>
+        <div id="input-row" class="grid-container"></div>
+    </div>
     
     <button onclick="checkAnswer()">Überprüfen</button>
     <button onclick="newExercise()">Neue Übung</button>

@@ -100,7 +100,7 @@
         
         .label-container {
             display: flex;
-            justify-content: flex-start; /* Align to the left */
+            justify-content: center; /* Center the labels and inputs */
             align-items: center; /* Center vertically */
             margin-bottom: 10px; /* Space between rows */
         }
@@ -113,7 +113,7 @@
 
         /* Specific margin for Ergebnis and Übertrag containers */
         .result-container {
-            margin-left: 16.7cm; /* Adjust this value to move left */
+            margin-left: -115px; /* Adjust this value to move left relative to the upper rows */
         }
     </style>
 </head>
@@ -130,12 +130,12 @@
     </div>
     
     <div class="label-container result-container">
-        <span class="label">Übertrag:</span>
+        <span class="label">Ergebnis:</span>
         <div id="carry-toggle-row" class="grid-container"></div> <!-- Carry toggle row -->
     </div>
     
     <div class="label-container result-container">
-        <span class="label">Ergebnis:</span>
+        <span class="label">Übertrag:</span>
         <div id="input-row" class="grid-container"></div>
     </div>
     

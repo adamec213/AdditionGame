@@ -1,4 +1,6 @@
 let exerciseCount = 0;
+let points = 0;
+let bonusPoints = true;
 let completeExcercise = false;
 
 // Generate random binary numbers of length 8
@@ -60,6 +62,15 @@ function populateBinaryNumbers() {
     window.correctSum = sumResult;
 }
 
+// Function to clear marking when user starts typing
+function clearMarking(index) {
+    const inputField = document.getElementById(`bit${index}`);
+    if (inputField.classList.contains('incorrect')) {
+            inputField.value = ''; // Clear the value of incorrect entries
+    }
+    inputField.classList.remove('correct', 'incorrect');
+}
+
 // Handle Enter key press to move to the left
 function handleEnterKey(event, currentIndex) {
     if (event.key === "Enter") {
@@ -68,6 +79,10 @@ function handleEnterKey(event, currentIndex) {
         if (previousIndex >= 0) {
             document.getElementById(`bit${previousIndex}`).focus();
         }
+    }
+	
+	for (let i = 0; i <= 8; i++) {
+        clearMarking(i);
     }
 }
 
@@ -91,7 +106,12 @@ function checkAnswer() {
 
     const result = document.getElementById('result');
     if (userSumAnswer === window.correctSum) {
-        result.textContent = 'Richtig!';
+		if(bonusPoints){
+			result.textContent = 'Richtig! (+10)';
+		}
+		else{
+			result.textContent = 'Richtig!  (+5)';
+		}
         result.classList.remove('incorrect');
         result.classList.add('correct');
         result.style.display = 'block';
@@ -101,6 +121,7 @@ function checkAnswer() {
         result.classList.remove('correct');
         result.classList.add('incorrect');
         result.style.display = 'block';
+		bonusPoints = false;
     }
 }
 
@@ -115,14 +136,17 @@ function toggleCarry(index) {
 function incrementExerciseCounter() {
 	if(!completeExcercise){
 		exerciseCount += 1;
+		points += bonusPoints ? 10 : 5;
 		completeExcercise = true;
 	}
     document.getElementById('exercise-counter').textContent = `Gelöste Übungen: ${exerciseCount}`;
+	document.getElementById('points-counter').textContent = `Punkte: ${points}`;
 }
 
 // Start a new exercise
 function newExercise() {
 	completeExcercise = false;
+	bonusPoints = true;
     populateBinaryNumbers();
     document.getElementById('result').style.display = 'none'; // Hide the result when a new exercise starts
 }
